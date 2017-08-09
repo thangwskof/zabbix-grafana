@@ -1,4 +1,4 @@
-# zabbix-graphite-docker
+# zabbix-grafana-docker
 
 What is this
 
