@@ -1,0 +1,70 @@
+version: "3.1"
+
+services:
+  zabbix-db:
+    image: monitoringartist/zabbix-db-mariadb
+    volumes:
+      - zabbix-db-storage:/var/lib/mysql
+      - backups:/backups
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - monitor
+    environment:
+      - MARIADB_USER=zabbix
+      - MARIADB_PASS=1nc0rrect
+    deploy:
+      replicas: 1 
+      restart_policy:
+        condition: on-failure
+
+  zabbix-server:
+    image: thangnt/zabbix-script
+    depends_on:
+      - zabbix-db
+    ports:
+      - "80:80"
+      - "10051:10051"
+    networks:
+      - monitor
+    volumes:
+      - zabbix-server:/usr/local/share/zabbix
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - ZS_DBHost=zabbix-db
+      - ZS_DBUser=zabbix
+      - ZS_DBPassword=1nc0rrect
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
+  grafana:
+    image: monitoringartist/grafana-xxl
+    ports:
+      - "8088:3000"
+    networks:
+      - monitor
+    volumes:
+      - grafana:/var/lib/grafana
+      - grafana-conf:/etc/grafana
+      - /etc/localtime:/etc/localtime:ro
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
+
+networks:
+    monitor:
+
+volumes:
+  zabbix-db-storage:
+    driver: local
+  backups:
+    driver: local
+  zabbix-server:
+    driver: local
+  grafana:
+    driver: local
+  grafana-conf:
+    driver: local
