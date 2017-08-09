@@ -2,7 +2,7 @@
 
 What is this
 
-- To deploy Zabbix server Zabbix 3.2.6, Mariadb, Graphite and Grafana containers with Docker Compose. This is aimed for quick and easy deployment.
+- To deploy Zabbix server Zabbix 3.2.6, Mariadb, Grafana containers with Docker Compose. This is aimed for quick and easy deployment.
 
 - Compose's file is written by v3.1 format. I was inspired by: https://github.com/monitoringartist/zabbix-xxl
 
@@ -27,8 +27,7 @@ Check status
 ```
 #docker stack services my_app
 ID            NAME                   MODE        REPLICAS  IMAGE
-0mzkvnonnikc  monitor_graphite       replicated  1/1       hopsoft/graphite-statsd:latest
-6p1w2rdhz19c  monitor_zabbix-server  replicated  1/1       thangnt/zabbix-customize:latest
+6p1w2rdhz19c  monitor_zabbix-server  replicated  1/1       thangnt/zabbix-script:latest
 7v785n0pnbml  monitor_grafana        replicated  1/1       monitoringartist/grafana-xxl:latest
 wqfvzqpdv3qu  monitor_zabbix-db      replicated  1/1       monitoringartist/zabbix-db-mariadb:latest
 ```
