@@ -1,29 +1,29 @@
 # zabbix-grafana-docker
 
-What is this
+### What is this ###
 
-- To deploy Zabbix server Zabbix 3.2.6, Mariadb, Grafana containers with Docker Compose. This is aimed for quick and easy deployment.
+* To deploy Zabbix server Zabbix 3.2.6, Mariadb, Grafana containers with Docker Compose. This is aimed for quick and easy deployment.
 
-- Compose's file is written by v3.1 format. I was inspired by: https://github.com/monitoringartist/zabbix-xxl
+* Compose's file is written by v3.1 format. I was inspired by: https://github.com/monitoringartist/zabbix-xxl
 
-System requirements
+### System requirements ###
 
-- Docker Engineer: docker-ce-17.03.1
+* Docker Engineer: docker-ce-17.03.1
 
-- Docker compose: docker-compose version 1.13.0
+* Docker compose: docker-compose version 1.13.0
 
-How to use
+### How to use ###
 
-1. Create a swarm and add nodes to the swarm
+* Create a swarm and add nodes to the swarm
 
-2. Download docker-compose.yml
+* Download docker-compose.yml
 
-3. Deploy a multi-container composed application is to use docker-compose.yml
+* Deploy a multi-container composed application is to use docker-compose.yml
 
-```
-docker stack deploy --compose-file docker-compose.yml my_app
-```
+``` docker stack deploy --compose-file docker-compose.yml my_app ```
+
 Check status
+
 ```
 #docker stack services my_app
 ID            NAME                   MODE        REPLICAS  IMAGE
